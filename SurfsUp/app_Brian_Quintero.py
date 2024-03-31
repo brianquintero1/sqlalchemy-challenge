@@ -1,5 +1,6 @@
 # Import the dependencies.
 import numpy as np
+import pandas as pd
 import datetime as dt
 
 import sqlalchemy
@@ -11,19 +12,19 @@ from flask import Flask, jsonify
 #################################################
 # Database Setup
 #################################################
-engine = create_engine("sqlite:///hawaii.sqlite")
+engine = create_engine("sqlite:///Resources/hawaii.sqlite")
 
 # reflect an existing database into a new model
 
 Base = automap_base()
 
-# Base.prepare(engine, reflect=True)
+Base.prepare(engine, reflect=True)
 
 # # Base.metadata.tables # Check tables, not much useful
 # # Base.classes.keys() # Get the table names
-
-# Measurement = Base.classes.measurement
-# Station = Base.classes.station
+print(Base.classes.keys())
+Measurement = Base.classes.measurement
+Station = Base.classes.station
 # reflect the tables
 
 
@@ -31,7 +32,6 @@ Base = automap_base()
 
 
 # Create our session (link) from Python to the DB
-
 
 #################################################
 # Flask Setup
